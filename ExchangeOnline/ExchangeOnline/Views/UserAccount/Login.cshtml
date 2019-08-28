@@ -1,0 +1,108 @@
+﻿@model ExchangeOnline.Models.SignUp
+@{
+	Layout = " ~/views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+@Html.AntiForgeryToken()
+
+
+<br />
+	<div class="col-md-6 offset-md-3">
+	<!-- Material form login -->
+	<div class="card">
+
+		<h5 class="card-header aqua-gradient white-text text-center py-4">
+			<strong>Login</strong>
+		</h5>
+
+		<!--Card content-->
+		<div class="card-body px-lg-5 pt-0">
+
+			<!-- Form -->
+			<form class="text-center" style="color: #757575;">
+
+				<!-- Email -->
+				<div class="md-form">
+					@Html.TextBoxFor(a => a.Email, new { @id = "email", @class = "form-control validate" })
+					@Html.ValidationMessageFor(a => a.Email, "", new { @class = "text-danger" })
+					@*<input type="email" id="email" class="form-control validate">*@
+					<label for="email" data-error="wrong" data-success="right">E-mail</label>
+				</div>
+
+				<!-- Password -->
+				<div class="md-form">
+					@Html.PasswordFor(a => a.Password, new { @id = "password", @class = "form-control validate" })
+					@Html.ValidationMessageFor(a => a.Password, "", new { @class = "text-danger" })
+					@*<input type="password" id="password" class="form-control validate">*@
+					<label for="password" data-error="wrong" data-success="right">Password</label>
+				</div>
+
+				@*<div class="d-flex justify-content-around">
+						<div>
+
+							<div class="form-check">
+								<input type="checkbox" class="form-check-input" id="materialLoginFormRemember">
+								<label class="form-check-label" for="materialLoginFormRemember">Remember me</label>
+							</div>
+						</div>
+						<div>
+
+							<a href="">Forgot password?</a>
+						</div>
+					</div>*@
+
+				<!-- Sign in button -->
+				<button class="btn morpheus-den-gradient  btn-block my-4 waves-effect z-depth-0" id="btnlogin" type="submit" style="border-radius:15px;">Login</button>
+
+				<!-- Register -->
+				<p>
+					Not a member?
+					<a href="@Url.Action("SignUp","UserAccount")">Register</a>
+				</p>
+			</form>
+			<!-- Form -->
+
+		</div>
+
+	</div>
+</div>
+<br />
+}
+<script>
+			//$("#btnlogin").click(function () {
+			//	var email = $("#email").val();
+			//	var password = $("#password").val();
+			//	$.ajax({
+			//		type: "POST",
+			//		url: '/Account/Login',
+			//		data: JSON.stringify({ Email: email, Password: password }),
+			//		dataType: "json",
+			//		contentType: "application/json; charset=utf-8",
+			//		success: function (data) {
+			//			if (data.error != "") {
+			//				toastr.error(data.error, 'Tripy.com says');
+			//				return false;
+			//			}
+			//			if (data.result != "") {
+			//				toastr.options.progressBar = true;
+			//				toastr.options.positionClass = "toast-bottom-center";
+			//				toastr.success(data.result, 'Tripy.com says');
+			//				$('#myModal').modal('hide');
+			//				location.reload();
+			//			}
+			//			else {
+			//				toastr.options.progressBar = true;
+			//				toastr.options.positionClass = "toast-bottom-center";
+			//				toastr.error('Login Failed please check email and password', 'Tripy.com says');
+			//			}
+
+			//		},
+			//		error: function () {
+			//			alert("Error while inserting data");
+			//		}
+			//	});
+			//});
+</script>
+<!-- Material form login -->

@@ -1,0 +1,38 @@
+﻿@model ExchangeOnline.Models.Reply
+@{
+	Layout = "~/Views/Shared/_Admin.cshtml";
+	ViewBag.Title = "MessageReply";
+}
+<script src="~/Content/js/recognizer.js"></script>
+ 
+@{ 
+
+if (!string.IsNullOrEmpty(ViewBag.Message)) {
+<script type="text/javascript">
+	alert('@ViewBag.Message');
+</script>
+}
+}
+@using (Html.BeginForm())
+{
+	@Html.AntiForgeryToken()
+	<br />
+	<div class="text-center">
+		<br />
+		<h5 class="text-info">Reply To User</h5>
+		<hr class="colorgraph" style="height:3px;" />
+	</div>
+	<br />
+	<div class="col-md-4 offset-md-4" style="padding-bottom:200px;">
+		<div class="md-form">
+			@{
+				ViewBag.UEmail = @Request.QueryString["email"];
+			}
+			@Html.HiddenFor(a => a.UserEmail, new { @Value = @ViewBag.UEmail })
+			@Html.TextAreaFor(a => a.ReplyMessage, new { @id = "result", @class = "form-control md-textarea", @style = "length=120 , rows=5" })
+			<label for="txtDescription">Message<span class="text-danger">*</span></label>
+		</div>
+		<button type="button" style="background:none;border: none" onclick="startConverting()"><span class="border" style="border-radius:10px; padding: 6px;padding-bottom: 6px; padding-top: 10px;"><i class='fas fa-microphone' style='font-size: 25px; color:slateblue;'></i></span></button>
+		<button class="btn btn-info waves-effect " type="submit" style=""><i class="fas fa-paper-plane"></i> Send Message</button>
+	</div>
+}

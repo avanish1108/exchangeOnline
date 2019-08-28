@@ -1,0 +1,163 @@
+﻿@model IEnumerable<ExchangeOnline.Models.AD>
+@using System.Text.RegularExpressions;
+@{
+	Layout = " ~/views/Shared/_Layout.cshtml";
+}
+<link href="~/css/grid.css" rel="stylesheet" />
+<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+	<div class="carousel-inner">
+		<div class="carousel-item active">
+			<img class="d-block w-100" src="~/Image/banner-1.gif" alt="Fourth slide" style="height:350px;">
+		</div>
+		<div class="carousel-item ">
+			<img class="d-block w-100" src="~/Image/online-merchants.jpg" alt="First slide" style="height:350px;">
+		</div>
+
+		<div class="carousel-item">
+
+			<img class="d-block w-100" src="~/Image/banner_shopping.jpg" alt="Second slide" style="height:350px;">
+		</div>
+		<div class="carousel-item">
+			<img class="d-block w-100" src="~/Image/buy-sell-dice.jpg" alt="Third slide" style="height:350px;">
+		</div>
+
+
+
+	</div>
+	<a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+		<span class="carousel-control-prev-icon" aria-hidden="true" style="height:50px; width:50px;"></span>
+		<span class="sr-only">Previous</span>
+	</a>
+	<a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+		<span class="carousel-control-next-icon" aria-hidden="true" style="height:50px; width:50px;"></span>
+		<span class="sr-only">Next</span>
+	</a>
+</div>
+<hr class="colorgraph" style=" margin-top: 0rem; " />
+		<div style="text-align:right;">
+			<a href="@Url.Action("ProductFilter","ProductAdv")" class="text-right" style="text-align:right; border-radius:25px;">Product<i class="fas fa-arrow-right"></i></a>
+		</div>
+<hr class="teal" style=" background-color: chartreuse;" />
+
+	<h4 class="text-center" style="color: cadetblue;">Our Services</h4>
+	<hr style=" background-color: chartreuse;" />
+<div class="row " style="margin-left:100px; margin-right:100px;">
+	<div class="col-md-3 col-xs-3 col-sm-3">
+		<div class="category">
+			<a href="#" h>
+				<i class="fas fa-home" style="font-size:65px; align-items:center; color: turquoise;"></i>
+				<p>property</p>
+			</a>
+		</div>
+	</div>
+	<div class="col-md-3 col-xs-3 col-sm-3">
+		<div class="category ">
+			<a href="#">
+				<i class='fas fa-graduation-cap ' style="font-size:65px; align-items:center; color: dimgray;"></i>
+				<p>Books,Sports & Hobbies</p>
+			</a>
+		</div>
+	</div>
+
+	<div class="col-md-3 col-xs-3 col-sm-3 ">
+		<div class="category">
+			<a href="#">
+				<i class="fas fa-car-side" style="font-size:65px; align-items:center; color: crimson;"></i>
+				<p>Cars</p>
+			</a>
+		</div>
+	</div>
+	<div class="col-md-3 col-xs-3 col-sm-3">
+		<div class="category">
+			<a href="#">
+				<i class="fas fa-motorcycle" style="font-size:65px; align-items:center; color: cadetblue;"></i>
+				<p>Bike</p>
+			</a>
+		</div>
+	</div>
+	<div class="col-md-3 col-xs-6 col-sm-3">
+		<div class="category">
+			<a href="#">
+				<i class="fas fa-laptop" style="font-size:65px; align-items:center; color: mediumseagreen;"></i>
+				<p>Electronics & appliances</p>
+			</a>
+		</div>
+	</div>
+	<div class="col-md-3 col-xs-6 col-sm-3">
+		<div class="category">
+			<a href="#">
+				<i class="fas fa-mobile-alt" style="font-size:65px; align-items:center; color: tomato;"></i>
+				<p>Mobiles</p>
+			</a>
+		</div>
+	</div>
+	<div class="col-md-3 col-xs-6 col-sm-3">
+		<div class="category">
+			<a href="#">
+				<i class="fas fa-tshirt" style="font-size:65px; align-items:center; color:orangered;"></i>
+				<p>Fashion</p>
+			</a>
+		</div>
+	</div>
+	<div class="col-md-3 col-xs-6 col-sm-3">
+		<div class="category">
+			<a href="#">
+				<i class="	fas fa-chair " style="font-size:65px; align-items:center; color: lightsalmon;"></i>
+				<p>furniture</p>
+			</a>
+		</div>
+	</div>
+
+</div>
+<div class="container">
+	<h2>Top Product</h2>
+	<hr style="background-color: chartreuse;" />
+	<div class="row" style="background-color:whitesmoke;">
+
+
+
+		@if (Model.Count() != 0)
+
+		{
+			foreach (var ad in Model)
+			{
+				
+				<div class="col-md-3 col-sm-6">
+					<br />
+					<div class="product-grid6">
+						<div class="product-image6">
+							<a href="#">
+								@{
+									string[] arr = Regex.Split(ad.Image, ",");
+								}
+								
+								<img class="pic-1" src="~/Upload/@arr[0]" style="height:200px;width:200px;">
+							</a>
+						</div>
+						<div class="product-content">
+							<h3 class="title"><a href="#" style="color:crimson;">@ad.Title</a></h3>
+							<div class="price">
+								<i class='fas fa-rupee-sign'></i> @ad.Price
+
+							</div>
+						</div>
+						<ul class="social">
+							<li><a href="@Url.Action("ViewProduct", "Main", new { id = ad.ADid })" data-tip="More detail"><i class="fa fa-search"></i></a></li>
+							@*<li>@Html.ActionLink("ViewProduct","Main", new {id = ad.ADid },new {@class= "fa fa-search",@tooltip="More Detail" })</li>*@
+						</ul>
+					</div>
+					<br />
+				</div>
+			}
+		}
+		else
+		{
+		   <br />
+		    <p style = "color:cadetblue;padding-top: 50px; padding-bottom: 50px; padding-left: 275px;" > No record found ..</p>
+		}
+	</div>
+</div>
+<div style="text-align:center;">
+	<a href="@Url.Action("ProductFilter","ProductAdv")" class="btn btn-outline-primary waves-effect" style="text-align:center; border-radius:25px;">More Product</a>
+</div>
+

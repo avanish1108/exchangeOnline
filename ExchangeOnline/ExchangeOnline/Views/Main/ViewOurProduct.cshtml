@@ -1,0 +1,99 @@
+﻿@model IEnumerable<ExchangeOnline.Models.AD>
+
+@{
+	Layout = " ~/views/Shared/_Layout.cshtml";
+	ViewBag.Title = "ViewOurProduct";
+}
+<br />
+<h4 style="text-align:center; color:aqua;">Your AD</h4>
+<hr class="colorgraph" style="height:3px" />
+
+<div style="text-align:right;">
+	<a href="@Url.Action("Postadd","Main")"><i class="fas fa-plus" style="font-size:30px;"></i></a>
+</div>
+<div class="table-responsive text-nowrap">
+	<table id="dtBasicExample" class="table table-hover table-bordered dataTable " cellspacing="0" width="100" role="grid" aria-describedby="dtBasicExample_info" style="width: 100%;">
+		<thead class="aqua-gradient white-text">
+			<tr>
+				<th>#</th>
+				<th>
+					@Html.DisplayNameFor(model => model.Title)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.Brand)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.Description)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.Mobile)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.Price)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.Categories)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.Image)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.State)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.City)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.Pincode)
+				</th>
+				<th></th>
+			</tr>
+		</thead>
+		@foreach (var item in Model)
+		{
+			<tbody>
+				<tr>
+					<td>
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Title)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Brand)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Description)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Mobile)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Price)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Categories)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Image)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.State)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.City)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Pincode)
+					</td>
+					<td>
+						<a href="@Url.Action("EditProduct","Main", new { id = item.ADid })" data-tip="More detail"><i class="material-icons" style="color:mediumaquamarine;">edit	</i></a>|
+						<a href="@Url.Action("ViewProduct", "Main", new { id = item.ADid })" data-tip="More detail"><i class="material-icons" style="color:orangered;">remove_red_eye</i></a>|
+						<a href="@Url.Action("DeleteProduct", "Main", new { id = item.ADid })" data-tip="More detail"><i class="material-icons" style="color:darkred;">delete</i></a>
+
+					</td>
+				</tr>
+			</tbody>
+		}
+
+	</table>
+</div>

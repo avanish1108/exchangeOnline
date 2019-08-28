@@ -1,0 +1,52 @@
+﻿@model IEnumerable<ExchangeOnline.Models.Help>
+
+@{
+	Layout = "~/Views/Shared/_Admin.cshtml";
+	ViewBag.Title = "HelpRequest";
+}
+<br />
+<h4 style="text-align:center; color:cornflowerblue;">Help Request</h4>
+<hr style="color:aqua;"/>
+<br>
+	<div class="table-responsive text-nowrap">
+		<table id="dtBasicExample" class="table table-hover table-bordered dataTable " cellspacing="0" width="100" role="grid" aria-describedby="dtBasicExample_info" style="width: 100%;">
+			<thead class="peach-gradient white-text">
+				<tr>
+					<th>#</th>
+					<th>
+						@Html.DisplayNameFor(model => model.Email)
+					</th>
+					<th>
+						@Html.DisplayNameFor(model => model.Mobile)
+					</th>
+					<th>
+						@Html.DisplayNameFor(model => model.Message)
+					</th>
+					<th>Reply</th>
+				</tr>
+			</thead>
+			@foreach (var item in Model)
+			{
+				<tbody>
+					<tr>
+						<td>
+							@Html.DisplayFor(modelItem => item.HelpId)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.Email)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.Mobile)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.Message)
+						</td>
+						<td>
+							<a href="@Url.Action("MessageReply", "Admin", new { email = item.Email })"><i class="material-icons">message</i></a>
+						</td>
+					</tr>
+				</tbody>
+			}
+
+		</table>
+	</div>

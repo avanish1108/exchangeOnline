@@ -1,0 +1,24 @@
+﻿@model IEnumerable<ExchangeOnline.Models.Reply>
+
+@{
+	Layout = " ~/views/Shared/_Layout.cshtml";
+	ViewBag.Title = "ViewMessage";
+}
+<div class="text-center ">
+	<br />
+	<h4 class="text-success">Inbox</h4>
+	<hr  class="colorgraph" style="height:3px;"/>
+</div>
+<div class="col-md-6 offset-md-3">
+	@foreach (var item in Model)
+	{
+		<h6>
+			@item.ReplyMessage
+		</h6>
+		<hr style="background-color:coral;" />
+	}
+	<div class="text-right">
+		<a href="@Url.Action("Help","Main")" class="btn btn-info" style="">Reply</a>
+	</div>
+</div>
+	

@@ -1,0 +1,83 @@
+﻿@model ExchangeOnline.Models.AdminLogin
+@{
+    ViewBag.Title = "AdminLogin";
+}
+<html>
+<head>
+	@if (ViewBag.Message != null)
+	{
+		<script>
+
+            $(document).ready(function () {
+
+                alert('@ViewBag.Message');
+
+            });
+
+		</script>
+
+	}
+	<style>
+		body {
+			background-image: url('../../Image/getty_663974538_353364.jpg');
+			/*background-image: url('../../Image/img (7).jpg');*/
+			background-repeat: no-repeat;
+			background-size: 1010px 700px;
+			opacity: 0.8;
+		}
+	</style>
+</head>
+<body >
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+	<!-- Bootstrap core CSS -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet">
+	<!-- Material Design Bootstrap -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.1/css/mdb.min.css" rel="stylesheet">
+
+	<!-- Bootstrap tooltips -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+	<!-- Bootstrap core JavaScript -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/js/bootstrap.min.js"></script>
+	<!-- MDB core JavaScript -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.1/js/mdb.min.js"></script>
+	@using (Html.BeginForm())
+	{
+		@Html.AntiForgeryToken()
+	<div class="container-fluid col-md-12">
+		
+		<div class="col-md-6 offset-md-3 mb-4" style="padding-top:125px; padding-bottom:135px">
+			<div class="card near-moon-gradient form-white">
+				<div class="card-body">
+					<!-- Form subscription -->
+					<form>
+						<h3 class="text-center indigo-text font-bold py-4"><strong>Admin Login</strong></h3>
+
+						<div class="md-form">
+							<i class="fa fa-user prefix white-text"></i>
+
+							@*<input type="text" name="email" id="form35" class="form-control">*@
+							@Html.TextBoxFor(a => a.Email, new { @id = "email", @class = "form-control validate" })
+							@Html.ValidationMessageFor(a => a.Email, "", new { @class = "text-danger" })
+							<label for="form35">Your Email</label>
+						</div>
+						<div class="md-form">
+							<i class="fa fa-key prefix white-text"></i>
+							@Html.PasswordFor(a => a.password, new { @id = "email", @class = "form-control validate" })
+							@Html.ValidationMessageFor(a => a.password, "", new { @class = "text-danger" })
+							<label for="form25">Your Password</label>
+						</div>
+						<div class="text-center py-4">
+							<input type="submit" class="btn btn-indigo" value="Login" />
+						</div>
+
+					</form>
+					<!-- Form subscription -->
+				</div>
+			</div>
+		</div>
+	</div>
+	}
+</body>
+</html>

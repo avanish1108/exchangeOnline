@@ -1,0 +1,63 @@
+﻿@model ExchangeOnline.Models.Help
+@{
+	Layout = " ~/views/Shared/_Layout.cshtml";
+	ViewBag.Title = "Help";
+}
+
+
+
+@using (Html.BeginForm())
+{
+	@Html.AntiForgeryToken()
+
+
+	<br />
+	<div class="col-md-6 offset-md-3">
+		<!-- Material form login -->
+		<div class="card">
+
+			<h5 class="card-header aqua-gradient white-text text-center py-4">
+				<strong><i class="fa fa-question"></i>Help</strong>
+			</h5>
+
+			<!--Card content-->
+			<div class="card-body px-lg-5 pt-0">
+
+				<!-- Form -->
+				<form class="text-center" style="color: #757575;">
+
+					<!-- Email -->
+					<div class="md-form">
+						@Html.TextBoxFor(a => a.Email, new { @id = "email", @class = "form-control validate" })
+                        @Html.ValidationMessageFor(a=>a.Email,"",new {@class="text-danger" })
+						@*<input type="email" id="email" class="form-control validate">*@
+						<label for="email" data-error="wrong" data-success="right">E-mail<span class="text-danger">*</span></label>
+					</div>
+					<div class="md-form">
+						@Html.TextBoxFor(a => a.Mobile, new { @id = "Mobile", @type = "number", @class = "form-control" })
+						@Html.ValidationMessageFor(a => a.Mobile, "", new { @class = "text-danger" })
+						@*<input type="email" id="email" class="form-control validate">*@
+						<label for="Mobile" data-error="wrong" data-success="right">Mobile<span class="text-danger">*</span></label>
+					</div>
+					<!-- Password -->
+					<div class="md-form">
+						@Html.TextAreaFor(a => a.Message, new { @id = "Message", @class = "form-control md-textarea validate", length = "120", rows = "3" })
+						@Html.ValidationMessageFor(a => a.Message, "", new { @class = "text-danger" })
+						@*<input type="password" id="password" class="form-control validate">*@
+						<label for="Message" data-error="wrong" data-success="right">Message<span class="text-danger">*</span></label>
+					</div>
+
+
+				
+					<button class="btn btn-info btn-block my-4 waves-effect z-depth-0" id="btnlogin" type="submit" style="border-radius:15px;">Submit</button>
+
+					
+				</form>
+				<!-- Form -->
+
+			</div>
+
+		</div>
+	</div>
+	<br />
+}	

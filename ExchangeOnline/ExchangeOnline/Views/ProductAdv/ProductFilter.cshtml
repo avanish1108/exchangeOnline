@@ -1,0 +1,152 @@
+﻿@model IEnumerable<ExchangeOnline.Models.AD>
+@using System.Text.RegularExpressions;
+@{
+	ViewBag.Title = "ProductFilter";
+	Layout = " ~/views/Shared/_Layout.cshtml";
+}
+<script>
+	function clear() {
+		document.getElementById("myform").reset();
+	}
+	$(".clear").click(function () {
+		$(".submit").click();
+		return false;
+	});
+</script>
+<link href="~/css/grid.css" rel="stylesheet" />
+
+
+<br />
+<div>
+	<div class="col-md-12 col-sm-12 col-lg-12 p-t-10">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-3 col-md-3 col-lg-3" style="background:white;">
+					@using (Html.BeginForm("ProductFilter", "ProductAdv", FormMethod.Get))
+					{
+						<form id="myform">
+							<div class="container p-t-20">
+								<div class="form-group">
+									<div class="col-md-12 col-sm-12 col-lg-12">
+										<p style="text-align:right;"><input type="reset" value="Reset All" class="btn btn-outline-default waves-effect" style="border-radius:25px" /></p>
+									</div>
+								</div>
+								<div class="md-form">
+									<input type="text" id="txtTitle" name="searchTitle" class="form-control" />
+									<label for="txtTitle">Title</label>
+								</div>
+								<div class="md-form">
+									<input type="text" id="txtBrand" name="searchBrand" class="form-control" />
+					
+									<label for="txtBrand">Brand</label>
+								</div>
+								<div class="form-row">
+									<div class="col">
+										<div class="md-form">
+											<input type="text" id="txtMin" name="searchMinPrice" class="form-control" />
+
+											<label for="txtMin">Min Price</label>
+										</div>
+									</div>
+									<div class="col">
+										<div class="md-form">
+											<input type="text" id="txtMax" name="searchMaxPrice" class="form-control" />
+
+											<label for="txtMax">Max Price</label>
+										</div>
+									</div>
+								</div>
+								<script>
+									$(document).ready(function () {
+										$('.mdb-select').materialSelect();
+									});
+								</script>
+								<select class="mdb-select md-form" name="selectCategories" style="border-top: none; border-left: none; border-right: none; border-bottom-color: darkgray;">
+									<option value="" disabled selected>Choose your option</option>
+									<option value="Property">Property</option>
+									<option value="Books,Sports & Hobbies">Books,Sports & Hobbies</option>
+									<option value="cars">cars</option>
+									<option value="Bike">Bike</option>
+									<option value="Mobile">Mobile</option>
+									<option value="Fashion">Fashion</option>
+									<option value="Furniture">Furniture</option>
+									<option value="Others">Others</option>
+								</select>
+
+								<div class="md-form">
+									<input type="text" id="txtState" name="searchState" class="form-control" />
+									<label for="txtState">State</label>
+								</div>
+								<div class="form-row">
+									<div class="col">
+										<div class="md-form">
+											<input type="text" id="txtCity" name="SearchCity" class="form-control" />
+
+											<label for="txtCity">City</label>
+										</div>
+									</div>
+									<div class="col">
+										<div class="md-form">
+											<input type="text" id="txtPincode" name="SearchPinCode" class="form-control" />
+
+											<label for="txtPinCode">Pin Code</label>
+										</div>
+									</div>
+								</div>
+								<div class="md-form">
+									<input type="submit" value="Filter" id="submit" class="btn btn-info" />
+								</div>
+							</div>
+						</form>
+					}
+				</div>
+
+				<div class="col-sm-9 col-md-9 col-lg-9 lft">
+					<section c, glass="statistics">
+						<div class="container" style="background:#F4F7FA;">
+							<div class="row d-flex">
+								@if (Model.Count() != 0)
+								{
+									foreach (var ad in Model)
+									{
+										<div class="col-md-4 col-sm-6">
+											<br />
+											<div class="product-grid6">
+												<div class="product-image6">
+													<a href="#">
+														@{
+															string[] arr = Regex.Split(ad.Image, ",");
+														}
+														<img class="pic-1" src="~/Upload/@arr[0]" style="height:200px;width:200px;">
+													</a>
+												</div>
+												<div class="product-content">
+													<h3 class="title"><a href="#" style="color:crimson;">@ad.Title</a></h3>
+													<div class="price">
+														<i class='fas fa-rupee-sign'></i> @ad.Price
+
+													</div>
+												</div>
+												<ul class="social">
+													<li><a href="@Url.Action("ViewProduct", "Main", new { id = ad.ADid })" data-tip="More detail"><i class="fa fa-search"></i></a></li>
+												</ul>
+											</div>
+											<br />
+										</div>
+									}
+								}
+								else
+								{
+									<br />
+									<p style="color:cadetblue;padding-top: 50px; padding-bottom: 50px; padding-left: 275px;">No record found ..</p>
+								}
+
+							</div>
+						</div>
+					</section>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<br />

@@ -1,0 +1,140 @@
+﻿
+@model ExchangeOnline.Models.AD
+@{
+	Layout = " ~/views/Shared/_Layout.cshtml";
+	ViewBag.Title = "EditProduct";
+}
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+<script src="~/Content/js/multiPhoto.js"></script>
+<script>
+	$("#Apply").click(function () {
+		if ($("#txtTitle").val() = null || $("#txtBrand").val() || $("#txtDescription").val() || $("#txtMobile").val() || $("#txtPrice").val() || $("#txtCategories").val() || $("#file").val() || $("#txtCurrentLocation").val() || $("#txtManualLocation").val()) {
+			alert("Please fill out required fields(*)");
+			return false;
+		}
+		return true;
+	});
+
+</script>
+<link href="~/css/multiplePhoto.css" rel="stylesheet" />
+@using (Html.BeginForm())
+		{
+			@Html.AntiForgeryToken()
+			<br />
+
+
+			<div class="col-md-6 offset-md-3">
+		<div class="card">
+
+			<h5 class="card-header peach-gradient white-text text-center py-4">
+				<strong>Post Your <i class='fas fa-ad' style='font-size:36px'></i></strong>
+			</h5>
+
+			<!--Card content-->
+			<div class="card-body px-lg-5 pt-0">
+
+				<!-- Form -->
+				<form class="text-center" style="color: #757575;">
+					@Html.HiddenFor(a => a.ADid)
+					<div class="form-row">
+						<div class="col">
+							<div class="md-form">
+								@Html.TextBoxFor(a => a.Title, new { @id = "txtTitle", @class = "form-control" })
+								@Html.ValidationMessageFor(a => a.Title)
+								@*<input type="text" id="" class="">*@
+								<label for="txtTitle">Add Title<span class="text-danger">*</span></label>
+							</div>
+						</div>
+						<div class="col">
+							<div class="md-form">
+								@Html.TextBoxFor(a => a.Brand, new { @id = "txtBrand", @class = "form-control md-textbox" })
+								@Html.ValidationMessageFor(a => a.Brand)
+								@*<input type="email" id="txtBrand" class="form-control">*@
+								<label for="txtBrand">Brand<span class="text-danger">*</span></label>
+							</div>
+						</div>
+					</div>
+
+					<div class="md-form">
+						@Html.TextAreaFor(a => a.Description, new { @id = "txtDescription", @class = "form-control md-textarea", style = "length=120 , rows=3" })
+						@Html.ValidationMessageFor(a => a.Description)
+						<label for="txtDescription">Description<span class="text-danger">*</span></label>
+					</div>
+					<div class="md-form">
+						@Html.TextBoxFor(a => a.Mobile, new { @id = "txtMobile", @type = "number", @class = "form-control validate" })
+						@Html.ValidationMessageFor(a => a.Mobile)
+						<label for="txtMobile" data-error="wrong" data-success="right">Mobile number<span class="text-danger">*</span></label>
+					</div>
+					@*<div class="md-form">
+
+			@Html.EditorFor(a => a.Email, new { @id = "txtEmail", @class = "form-control validate" })
+			@Html.ValidationMessageFor(a => a.Email)
+			<label for="txtEmail" data-error="wrong" data-success="right">Email<span class="text-danger">*</span></label>
+		</div>*@
+					@Html.HiddenFor(a => a.Email)
+					<p>Set A Price</p>
+					<div class="md-form mt-0">
+						@Html.TextBoxFor(a => a.Price, new { @id = "txtPrice", @class = "form-control" })
+						@Html.ValidationMessageFor(a => a.Price)
+						<label for="txtPrice">Price<span class="text-danger">*</span></label>
+					</div>
+					@Html.DropDownListFor(x => x.Categories, new List<SelectListItem>
+					 {
+							new SelectListItem() {Text = "--Select Categories--", Value="nulll"},
+							new SelectListItem() {Text = "Property", Value="Property"},
+							new SelectListItem() {Text = "Books,Sports & Hobbies", Value="Books,Sports & Hobbies"},
+							new SelectListItem() {Text = "cars", Value="cars"},
+							new SelectListItem() {Text = "Bike", Value="Bike"},
+							new SelectListItem() {Text = "Electronics & appliances", Value="Electronics & appliances"},
+							new SelectListItem() {Text = "Mobile", Value="Mobile"},
+							new SelectListItem() {Text = "Fashion", Value="Fashion"},
+							new SelectListItem() {Text = "Furniture", Value="Furniture"},
+							new SelectListItem() {Text = "Others", Value="Others"}
+
+					 }, new {@id="txtCategories", @class = "mdb-select md-form colorful-select dropdown-info", @style = "width: 375px; border-top: none; border-left: none; border-right: none;" })
+					@Html.ValidationMessageFor(a => a.Categories)
+
+					@*<div class="md-form mt-0">
+			<div class="container">
+				<fieldset class="form-group">
+					<input type="file" id="file" name="file" accept="image/*" a class="form-control" multiple />
+				</fieldset>
+
+			</div>
+		</div>*@
+					@Html.HiddenFor(a => a.Image)
+
+					<div class="form-row">
+						<div class="col">
+							<div class="md-form">
+								@Html.TextBoxFor(a => a.State, new { @id = "txtState", @class = "form-control" })
+								@Html.ValidationMessageFor(a => a.State)
+								<label for="txtState">State<span class="text-danger">*</span></label>
+							</div>
+						</div>
+						<div class="col">
+							<div class="md-form">
+								@Html.TextBoxFor(a => a.City, new { @id = "txtCity", @class = "form-control" })
+								@Html.ValidationMessageFor(a => a.City)
+								<label for="txtCity">City<span class="text-danger">*</span></label>
+							</div>
+						</div>
+						<div class="col">
+							<div class="md-form">
+								@Html.TextBoxFor(a => a.Pincode, new { @id = "txtPincode", @type = "number", @class = "form-control" })
+								@Html.ValidationMessageFor(a => a.Pincode)
+								<label for="txtPincode">Pin Code<span class="text-danger">*</span></label>
+							</div>
+						</div>
+
+					</div>
+					<button class="btn morpheus-den-gradient btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit" style="border-radius:25px;">Post Now</button>
+					<hr>
+				</form>
+			</div>
+
+		</div>
+
+	</div>
+	<br />
+}

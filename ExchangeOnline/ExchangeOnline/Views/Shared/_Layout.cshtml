@@ -1,0 +1,261 @@
+﻿
+@{
+	Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+	<meta name="viewport" content="width=device-width" />
+	<title>ExchangeOnline</title>
+	@*<script>
+			$(inputselector).val(newvalue).trigger("change");
+		</script>*@
+	<style>
+		.colorgraph {
+			height: 5px;
+			border-top: 0;
+			background: #c4e17f;
+			border-radius: 5px;
+			background-image: -webkit-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+			background-image: -moz-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+			background-image: -o-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+			background-image: linear-gradient(to right, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+		}
+
+		input::-webkit-input-placeholder {
+			color: white !important;
+		}
+	</style>
+
+
+</head>
+<body>
+
+	<!-- Font Awesome -->
+	<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+	<script src="~/Scripts/jquery-ui-1.12.1.js"></script>
+	<link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+	@*<link href="~/Content/themes/base/all.css" rel="stylesheet" />*@
+	<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+	<link href="~/Content/themes/mdb.min.css" rel="stylesheet" />
+	<script src="~/Scripts/umd/popper.min.js"></script>
+	<script src="~/Scripts/bootstrap.min.js"></script>
+	<script src="~/Scripts/mdb.min.js"></script>
+	<link href="~/Content/MaterialIcon.css" rel="stylesheet" />
+	<!-- JQuery -->
+	@*<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+		<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+		<!-- Bootstrap core CSS -->
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet">
+		<!-- Material Design Bootstrap -->
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.1/css/mdb.min.css" rel="stylesheet">
+
+		<!-- Bootstrap tooltips -->
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+		<!-- Bootstrap core JavaScript -->
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/js/bootstrap.min.js"></script>
+		<!-- MDB core JavaScript -->
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.1/js/mdb.min.js"></script>
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">*@
+
+
+	<script src="~/Content/js/recognizer.js"></script>
+	<nav class="navbar fixed-top navbar-expand-lg navbar-light " style="background-color:crimson; ">
+		<a class="navbar-brand " href="@Url.Action("Index","Main")" style=" font-family:Snell Roundhand,cursive ; color:aqua">Exchange  <sub style="color:chartreuse;">Online</sub></a>
+		@*"ProductFilter", "ProductAdv", FormMethod.Get*@
+		<form class="form-inline">
+			@using (Html.BeginForm())
+			{
+				@Html.AntiForgeryToken();
+				<div class="md-form active-purple active-purple-2 my-0">
+					<input type="text" class="form-control mr-sm-2" id="Location" name="searchCity" placeholder="Search City" aria-label="Location" style="color:white;">
+				</div>
+				<div class="md-form active-purple active-purple-2 my-0">
+					<input type="text" class="form-control  mr-sm-2 " id="result" name="searchTitle" placeholder="Search Cars,Mobile etc." aria-label="Search Cars,Mobile etc." style="color:white;">
+				</div>
+				<div class="md-form my-0">
+					<button type="button" style="background:none;border: none;" onclick="startConverting()"><span class="border" style=" border-radius: 15px;padding: 4px;padding-bottom: 0px; padding-top: 6px; color:white"><i class='fas fa-microphone' style='font-size: 25px; color:white;'></i></span></button>
+					@*<a class="waves-effect" onclick="startConverting()"><span class="border" style=" border-radius: 15px;padding: 4px;padding-bottom: 0px; padding-top: 6px;"><i class="fas fa-microphone" style='font-size: 25px; color: white;'></i></span></a>*@
+					<button type="submit" id="submit" class="waves-effect" onclick="window.location.href=@Url.Action("ProductFilter","ProductAdv")" style="background:none;border: none;"><span class="border" style=" border-radius: 15px;padding: 4px;padding-bottom: 0px; padding-top: 6px; color:white"><i class='fab fa-sistrix' style='font-size: 25px; color:white;'></i></span></button>
+				</div>
+			}
+		</form>
+		<script type="text/javascript">
+			$(document).ready(function () {
+				$("#result").autocomplete({
+					source: function (request, response) {
+						$.ajax({
+							url: "/Main/getAutoComplete",
+							type: "POST",
+							dataType: "json",
+							data: { Prefix: request.term },
+							success: function (data) {
+								response($.map(data, function (item) {
+									return { label: item.n, value: item.name };
+								}))
+
+							}
+						})
+					},
+					messages: {
+						noResults: "",
+						results: function (count) {
+							return count + (count > 1 ? ' results' : ' result ') + ' found';
+						}
+					}
+				});
+			})
+		</script>
+
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+			<ul class="navbar-nav mr-auto mt-2 mt-lg-0"></ul>
+			<ul class="navbar-nav ml-auto nav-flex-icons">
+				<li class="nav-item">
+					<a href="@Url.Action( "Postadd","Main")" class="btn btn-amber waves-effect" style="font-family:cursive;">Post  <i class='fas fa-ad' style='font-size:20px'></i></a>
+					@*<button type="button" class=" waves-effect" onclick="location.href='@Url.Action( "Postadd","Main")'" style="font-family:cursive; border-radius:30px;">Post  <i class='fas fa-ad' style='font-size:20px'></i></button>*@
+				</li>
+				@if (Session["Email"] != null)
+				{
+					<li class="nav-item avatar dropdown">
+						<a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-55" data-toggle="dropdown" aria-haspopup="true"
+						   aria-expanded="false">
+							<i class="fas fa-user-circle" style='font-size:36px'></i>
+						</a>
+						<div class="dropdown-menu dropdown-menu-right dropdown-secondary" aria-labelledby="navbarDropdownMenuLink-55">
+							<a class="dropdown-item" href=""> User: @Session["Email"].ToString()</a>
+							<a class="dropdown-item" href="@Url.Action("ViewOurProduct", "Main", new { email = Session["Email"] } )">Your AD</a>
+
+							<a class="dropdown-item" href="@Url.Action("Logout","UserAccount") "><i class="fas fa-sign-out-alt"></i> Logout</a>
+							<a class="dropdown-item" href="@Url.Action("ViewMessage", "Main", new { email = Session["Email"] } )"><i class="far fa-envelope"></i> Reply</a>
+							@*<a class="dropdown-item" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+										<i class="far fa-envelope"></i> Reply
+									</a>
+									<div class="collapse" id="collapseExample">
+										<div class="card card-body">
+
+										</div>
+
+								</div>*@
+						</div>
+					</li>
+
+				}
+				else
+				{
+					<li class="nav-item">
+						<a href="@Url.Action("Login", "UserAccount")" class="btn btn-info waves-effect" style="font-family:cursive; "><i class="fas fa-sign-in-alt"></i> Login</a>
+						@*<button type="button" class=" waves-effect" onclick="location.href='@Url.Action( "Login","SignUp")'" style="font-family:cursive; border-radius:30px;">Login/SignUp</button>*@
+					</li>
+				}
+			</ul>
+		</div>
+	</nav>
+	<hr class="colorgraph" style="margin-top: 75px; margin-bottom: 0rem;" />
+	<div>
+		@RenderBody()
+	</div>
+	<!-- Footer -->
+	<footer class="page-footer font-small blue-grey lighten-5">
+		<hr class="colorgraph" style=" margin-top: 0rem; margin-bottom: 0rem;" />
+
+		<!-- Footer Links -->
+		<div class="container text-center text-md-left mt-5">
+
+			<!-- Grid row -->
+			<div class="row mt-3 dark-grey-text">
+
+				<!-- Grid column -->
+				<div class="col-md-3 col-lg-4 col-xl-3 mb-4">
+
+					<!-- Content -->
+					<h6 class="" style="font-family:Snell Roundhand,cursive ;">Exchange Online</h6>
+					<hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 120px; ">
+					<p style="font-family:cursive ;">
+						"The main aim of the project that in large Institution, many times small things are not in focus, so our project is navigating the right path".It is a user friendly website and easy to use.The project was developed to fulfill the requirement of the user who wish to buying or selling online.
+					</p>
+
+				</div>
+				<!-- Grid column -->
+				<!-- Grid column -->
+				<div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+
+					<!-- Links -->
+					<h6 class="" style="font-family:Snell Roundhand,cursive ;">Products</h6>
+					<hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style=" width: 60px;">
+					<p>
+						<a class="dark-grey-text" href="#!">Vehicle</a>
+					</p>
+					<p>
+						<a class="dark-grey-text" href="#!">Electronics</a>
+					</p>
+					<p>
+						<a class="dark-grey-text" href="#!">Furniture</a>
+					</p>
+					<p>
+						<a class="dark-grey-text" href="#!">Others</a>
+					</p>
+				</div>
+				<div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+
+
+					<h6 class="" style="font-family:Snell Roundhand,cursive ;">About Us</h6>
+					<hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+					<p>
+						<img src="~/Image/2018-12-19-15-01-27-204.jpg" class="img-circle" style="height: 75px; width: 75px; border-radius: 35px; " />
+					</p>
+					<p style="color:chocolate;">CEO: Avanish Tiwari</p>
+					<p style="font-family:cursive; color: coral;">"Stop waiting for things to happen. Go out and make it them happen"</p>
+				</div>
+
+				<div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+
+					<!-- Links -->
+					<h6 class="" style="font-family:Snell Roundhand,cursive ;">Contact</h6>
+					<hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 70px;">
+					<p>
+						<i class="fas fa-home mr-3"></i> Santosh Bhuvan, Nallasopara(East),Maharastra,India
+					</p>
+					<p>
+						<i class="fas fa-envelope mr-3"></i>avanishtiwari07@gmail.com
+					</p>
+					<p>
+						<i class="fas fa-phone mr-3"></i> +91 9359150106
+					</p>
+					<p><a href="@Url.Action("Help","Main")" class="btn btn-outline-secondary waves-effect" style="border-radius:25px;"><i class="fa fa-question"></i>Help</a></p>
+				</div>
+				<!-- Grid column -->
+
+			</div>
+			<!-- Grid row -->
+
+		</div>
+		<!-- Footer Links -->
+		<!-- Copyright -->
+		<div class="footer-copyright text-center text-black-50 py-3">
+			© @DateTime.Now.Year Copyright:
+			<a class="dark-grey-text" href="#">ExchangeOnline</a>
+		</div>
+		<!-- Copyright -->
+
+	</footer>
+	<style>
+		.active-purple-2 input[type=text]:focus:not([readonly]) {
+			border-bottom: 2px solid #ce93d8;
+			box-shadow: 0 2px 0 0 #ce93d8;
+		}
+
+		.active-purple input[type=text] {
+			border-bottom: 2px solid #ce93d8;
+			box-shadow: 0 2px 0 0 #ce93d8;
+		}
+	</style>
+</body>
+</html>
